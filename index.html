@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WebGL Tetris Refined</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gl-matrix/2.8.1/gl-matrix-min.js"></script>
+  </head>
+  <body>
+    <canvas id="Canvas" width="300" height="600"></canvas>
+    <div id="GameUI">
+      <div id="Score">Score: <span id="ScoreValue">0</span></div>
+      <div id="Level">Level: <span id="LevelValue">1</span></div>
+      <div id="Next">
+        <div>Next:</div>
+        <canvas id="NextPiece" width="100" height="100"></canvas>
+      </div>
+      <div id="Controls">
+        <p>← → : Move</p>
+        <p>↑ : Rotate</p>
+        <p>↓ : Soft Drop</p>
+        <p>Space : Hard Drop</p>
+        <p>P : Pause</p>
+      </div>
+    </div>
+
+    <div id="GameOverOverlay" class="overlay">
+      <h2>Game Over</h2>
+      <p>Final Score: <span id="FinalScore">0</span></p>
+      <button id="RestartButton">Play Again</button>
+    </div>
+
+    <div id="PauseOverlay" class="overlay">
+      <h2>Paused</h2>
+      <p>Press 'P' to Resume</p>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>

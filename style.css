@@ -1,0 +1,175 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #111;
+  box-sizing: border-box;
+  overflow: hidden; /* prevent page scroll */
+  font-family: "Arial", sans-serif;
+  color: #eee;
+}
+
+body {
+  position: relative; /* Needed for absolute positioning of overlays */
+  display: flex; /* Use flex for layout */
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  justify-content: center;
+  align-items: center;
+  gap: 20px; /* Add gap between canvas and UI */
+  padding: 10px; /* Add some padding */
+}
+
+canvas#Canvas {
+  border: 2px solid #444;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  height: 90vh; /* use up to 90% of viewport height */
+  aspect-ratio: 1 / 2; /* proper Tetris ratio (10 cols / 20 rows) */
+  max-width: 90vw; /* never exceed viewport width */
+  background-color: #000; /* Ensure canvas background is black */
+}
+
+#GameUI {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #444;
+  width: 160px; /* Adjusted width */
+  display: flex;
+  flex-direction: column; /* Stack UI elements vertically */
+  align-items: center; /* Center items */
+  gap: 10px; /* Space between UI elements */
+}
+
+#Score,
+#Level {
+  font-size: 1.1em; /* Adjusted size */
+  text-align: center;
+  width: 100%;
+}
+
+#Next {
+  text-align: center;
+  width: 100%;
+}
+
+#NextPiece {
+  border: 1px solid #444;
+  background-color: rgba(0, 0, 0, 0.5);
+  margin-top: 5px; /* Reduced margin */
+}
+
+#Controls {
+  font-size: 0.8em; /* Adjusted size */
+  border-top: 1px solid #444;
+  padding-top: 10px;
+  width: 100%;
+  text-align: center;
+}
+
+#Controls p {
+  margin: 4px 0; /* Adjusted margin */
+}
+
+.overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.85); /* Darker overlay */
+  padding: 30px 40px;
+  border-radius: 8px;
+  border: 2px solid #555; /* Slightly lighter border */
+  text-align: center;
+  display: none; /* Hidden by default */
+  z-index: 10; /* Ensure overlays are on top */
+  color: #fff; /* White text */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+}
+
+.overlay h2 {
+  font-size: 2em;
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: #eee; /* Light heading color */
+}
+
+.overlay p {
+  font-size: 1.1em;
+  margin-bottom: 25px;
+}
+
+#GameOverOverlay h2 {
+  color: #ff4444; /* Red for Game Over */
+}
+
+#PauseOverlay h2 {
+  color: #ffff55; /* Yellow for Paused */
+}
+
+#RestartButton {
+  background-color: #0095dd;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 1.1em; /* Adjusted size */
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+#RestartButton:hover {
+  background-color: #0077aa;
+}
+
+@media (max-width: 650px) {
+  body {
+    flex-direction: column; /* Stack canvas and UI vertically */
+    justify-content: flex-start; /* Align top */
+    height: auto; /* Allow scrolling if needed */
+    overflow-y: auto; /* Allow vertical scroll */
+    padding: 5px;
+    gap: 10px;
+  }
+
+  canvas#Canvas {
+    height: auto; /* Let width determine height via aspect ratio */
+    width: 95%; /* Use most of the width */
+    max-height: 70vh; /* Limit height */
+    order: 1; /* Canvas first */
+  }
+
+  #GameUI {
+    width: 90%; /* Wider UI */
+    max-width: 300px; /* Limit max width */
+    order: 2; /* UI second */
+    flex-direction: row; /* Arrange items horizontally */
+    flex-wrap: wrap; /* Allow wrapping within UI */
+    justify-content: space-around; /* Distribute space */
+    padding: 10px;
+  }
+
+  #Score,
+  #Level,
+  #Next,
+  #Controls {
+    width: auto; /* Allow natural width */
+    flex-basis: 45%; /* Roughly two columns */
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  #Controls {
+    flex-basis: 100%; /* Controls take full width */
+    border-top: none; /* Remove top border */
+    padding-top: 0;
+  }
+
+  .overlay {
+    width: 80%; /* Wider overlays */
+  }
+}
